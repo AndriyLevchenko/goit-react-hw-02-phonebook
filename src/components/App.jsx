@@ -44,15 +44,6 @@ export class App extends React.Component {
     );
   }
 
-  // inputChangeName = event => {
-  //   this.setState({name: event.currentTarget.value})
-  // }
-
-  // inputChangeNumber = event => {
-  //   this.setState({number: event.currentTarget.value})
-  // }
-
-
   // У формі прописуєм onSubmit як назву пропсу (це не сам сабміт)
   render () {
     const {filter} = this.state;

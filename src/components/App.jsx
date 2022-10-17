@@ -56,8 +56,6 @@ export class App extends React.Component {
   // У формі прописуєм onSubmit як назву пропсу (це не сам сабміт)
   render () {
     const {filter} = this.state;
-    
-
     const filteredContacts = this.getFilteredContacts();
     return (
       <div>

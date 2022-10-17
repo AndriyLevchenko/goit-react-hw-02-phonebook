@@ -1,39 +1,40 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import css from 'components/App.module.css';
+import css from 'components/Form/Form.module.css';
 
 export class Form extends React.Component {
     state = {
-        name: '',
-        number: '',
+      name: '',
+      number: '',
     }
 
     inputChange = event => {
-        const {name, value} = event.currentTarget;
-        this.setState({[name]: value})
+      const {name, value} = event.currentTarget;
+      this.setState({[name]: value})
     }
 
     handleSabmit = event => {
-        const {name, number} = this.state;
-        event.preventDefault();
-        const contact = {
-            id: nanoid(4),
-            name: name,
-            number: number,
-          };
-        this.props.onSubmit(contact);
-        this.resetForm();
+      const {name, number} = this.state;
+      event.preventDefault();
+      
+      const contact = {
+        id: nanoid(4),
+        name: name,
+        number: number,
+      };
+      this.props.onSubmit(contact);
+      this.resetForm();
     }
 
     resetForm = () => {
-        this.setState ({name: '', number: ''})
+      this.setState ({name: '', number: ''})
     }
 
     render () {
         const {name, number} = this.state;
         return (
-        <form onSubmit={this.handleSabmit}>
-          <p>Name</p>
+        <form onSubmit={this.handleSabmit} className={css.form}>
+          <p className={css.title}>Name</p>
           <input
             type="text"
             name="name"
@@ -43,7 +44,7 @@ export class Form extends React.Component {
             value={name}
             onChange={this.inputChange}
           />
-          <p>Number</p>
+          <p className={css.title}>Number</p>
           <input
             type="tel"
             name="number"

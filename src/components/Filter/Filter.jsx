@@ -1,11 +1,13 @@
 import React from 'react';
-// import css from 'components/App.module.css';
+import PropTypes from 'prop-types';
+import css from 'components/Filter/Filter.module.css';
 
 export const Filter = ({value, onChange}) => {
     return (
         <div>
-            <p>Find contacts by name</p>
+            <p className={css.title}>Find contacts by name</p>
             <input
+                className={css.input}
                 type="text"
                 name="filter"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -17,3 +19,8 @@ export const Filter = ({value, onChange}) => {
         </div>
     )
 }
+
+Filter.propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};

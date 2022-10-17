@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'components/Form/Form';
 import { Filter } from 'components/Filter/Filter';
 import { ListContacts } from 'components/ListContacts/ListContacts';
-// import css from 'components/App.module.css';
+import css from 'components/App.module.css';
 
 
 export class App extends React.Component {
@@ -17,10 +17,14 @@ export class App extends React.Component {
   }
 
   formSubmitHandler = contact => {
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }))
-  }
+    const duplicateName = this.state.contacts.find(prevState => 
+      prevState.name === contact.name);
+    if (duplicateName) {
+      alert(`${contact.name} is already on contacts`);
+      return
+    } 
+      this.setState(prevState => ({contacts: [contact, ...prevState.contacts],
+  }))}
 
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -57,9 +61,9 @@ export class App extends React.Component {
     const filteredContacts = this.getFilteredContacts();
     return (
       <div>
-        <h2>Phonebook</h2>
+        <h2 className={css.title}>Phonebook</h2>
         <Form onSubmit={this.formSubmitHandler}/>
-        <h2>Contacts</h2>
+        <h2 className={css.title}>Contacts</h2>
         <Filter value={filter} onChange={this.inputFilterForm}/>
         <ListContacts contacts={filteredContacts} onDeleteContact={this.deleteContact}/>
       </div>
